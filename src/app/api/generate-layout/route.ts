@@ -73,9 +73,14 @@ Return ONLY valid JSON. Return no markdown backticks like \`\`\`json.`;
 
         return NextResponse.json(parsedLayout);
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Gemini API Error details:", error);
-        const errMessage = error?.message || error?.toString() || 'Error generating layout from image';
+        let errMessage = 'Error generating layout from image';
+        if (error instanceof Error) {
+            errMessage = error.message;
+        } else if (typeof error === 'string') {
+            errMessage = error;
+        }
         return NextResponse.json({ error: errMessage }, { status: 500 });
     }
 }

@@ -16,10 +16,11 @@ interface DataPreviewProps {
 
 export default function DataPreview({ data, onReset, onGenerate, selectedLayout, onLayoutSelect, templateConfig, onTemplateConfigSelect }: DataPreviewProps) {
     const [isAnalyzingAI, setIsAnalyzingAI] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     if (data.length === 0) return null;
 
-    const layouts: { id: LayoutType; name: string; desc: string }[] = [
+    const layouts: { id: LayoutType; name: string; desc: string; vertical?: boolean }[] = [
         { id: 'classic', name: 'Classic', desc: 'Standard vibrant ID design' },
         { id: 'modern', name: 'Modern', desc: 'Sleek dark theme with gradients' },
         { id: 'minimalist', name: 'Minimalist', desc: 'Clean, typography-focused design' },
@@ -28,9 +29,7 @@ export default function DataPreview({ data, onReset, onGenerate, selectedLayout,
         { id: 'orange-school', name: 'Vidya Mandir', desc: 'Orange landscape design' },
         { id: 'blue-vertical', name: 'GHSS Padre', vertical: true, desc: 'Blue vertical card' },
         { id: 'custom', name: 'Custom Image', desc: 'Upload your own template' }
-    ] as any;
-
-    const fileInputRef = useRef<HTMLInputElement>(null);
+    ];
 
     const handleBackgroundUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -82,9 +81,10 @@ export default function DataPreview({ data, onReset, onGenerate, selectedLayout,
                     fields: aiLayoutConfig.fields || {}
                 });
 
-            } catch (error: any) {
+            } catch (error: unknown) {
                 console.error("AI Error:", error);
-                alert(`AI Generation Failed: ${error.message || 'Unknown error'}\n\nReverting to default layout positions.`);
+                const errMsg = error instanceof Error ? error.message : 'Unknown error';
+                alert(`AI Generation Failed: ${errMsg}\n\nReverting to default layout positions.`);
                 // Fallback to defaults
                 onTemplateConfigSelect({
                     imageUrl: url,

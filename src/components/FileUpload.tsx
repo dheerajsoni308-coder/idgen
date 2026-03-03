@@ -14,7 +14,7 @@ export default function FileUpload({ onDataLoaded }: FileUploadProps) {
     const [error, setError] = useState<string | null>(null);
     const [success, setSuccess] = useState<string | null>(null);
 
-    const processFile = (file: File) => {
+    const processFile = useCallback((file: File) => {
         setError(null);
         setSuccess(null);
 
@@ -117,9 +117,8 @@ export default function FileUpload({ onDataLoaded }: FileUploadProps) {
         reader.onerror = () => {
             setError("Failed to read the file.");
         };
-
         reader.readAsArrayBuffer(file);
-    };
+    }, [onDataLoaded]);
 
     const handleDrag = useCallback((e: React.DragEvent) => {
         e.preventDefault();

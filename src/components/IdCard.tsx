@@ -27,6 +27,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
             <div className="w-full flex items-center bg-[#1e2a8a] text-white px-2 py-1.5 mt-1 border-t-2 border-b-2 border-[#1e2a8a]">
                 <div className="w-8 h-8 bg-yellow-400 rounded-full flex items-center justify-center shrink-0 border-2 border-white overflow-hidden">
                     {data.logoUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={data.logoUrl} alt="Logo" className="w-full h-full object-cover" />
                     ) : (
                         <div className="w-full h-full bg-slate-200 flex items-center justify-center text-[8px] text-blue-900 font-bold">LOGO</div>
@@ -78,6 +79,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
             <div className="absolute bottom-1.5 right-2 w-20 flex flex-col items-center z-10">
                 <div className="h-6 w-full flex items-end justify-center font-['Brush_Script_MT',cursive] text-sm text-black mb-0.5 border-b border-black relative">
                     {data.signatureUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={data.signatureUrl} className="absolute bottom-1 left-1/2 -translate-x-1/2 w-16 h-8 object-contain" alt="Signature" />
                     ) : 'Signature'}
                 </div>
@@ -96,6 +98,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
             <div className="w-full flex items-center justify-between px-4 py-4 z-10">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center shrink-0 shadow-lg overflow-hidden">
                     {data.logoUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={data.logoUrl} alt="Logo" className="w-full h-full object-cover" />
                     ) : (
                         <div className="text-[8px] text-white font-bold">LOGO</div>
@@ -221,6 +224,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
                     <div className="border-b border-slate-300 w-full mb-1 h-4 flex items-end relative">
                         {/* Signature pseudo */}
                         {data.signatureUrl ? (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img src={data.signatureUrl} className="absolute bottom-0 left-0 w-12 h-6 object-contain opacity-80" alt="Signature" />
                         ) : (
                             <svg className="w-12 h-3 opacity-60" viewBox="0 0 100 30">
@@ -247,6 +251,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
                 <div className="flex items-center gap-2">
                     <div className="w-11 h-11 bg-yellow-400 rounded-full flex items-center justify-center border-[2.5px] border-[#800000] shadow-sm relative overflow-hidden">
                         {data.logoUrl ? (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img src={data.logoUrl} alt="Logo" className="w-full h-full object-cover" />
                         ) : (
                             <>
@@ -332,6 +337,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
                 </div>
                 <div className="text-center w-16 relative pt-3">
                     {data.signatureUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={data.signatureUrl} className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-8 object-contain opacity-90" alt="Signature" />
                     ) : (
                         <svg className="absolute -top-1 left-1/2 -translate-x-1/2 w-16 h-4 opacity-80" viewBox="0 0 100 30" style={{ fill: 'none', stroke: '#2563eb', strokeWidth: 1.5 }}>
@@ -350,6 +356,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
             <div className="w-full bg-[#1b5e20] text-white pt-2 pb-1.5 px-2 flex items-center justify-between z-10">
                 <div className="w-10 h-10 bg-white rounded-full flex flex-col items-center justify-center border-2 border-red-500 shrink-0 shadow-sm relative overflow-hidden">
                     {data.logoUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={data.logoUrl} alt="Logo" className="w-full h-full object-cover" />
                     ) : (
                         <>
@@ -442,6 +449,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
 
                     <div className="w-[120%] text-center border-t border-slate-600 pt-0.5 z-10 absolute bottom-[2px] right-2 mt-4">
                         {data.signatureUrl ? (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img src={data.signatureUrl} className="absolute bottom-3 left-1/2 -translate-x-1/2 w-16 h-8 object-contain" alt="Signature" />
                         ) : null}
                         <span className="text-[7.5px] font-bold text-[#1b5e20] tracking-tight uppercase relative z-10">Authorised Signature</span>
@@ -460,6 +468,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
             <div className="w-full bg-[#f6ab00] pt-2 pb-1.5 px-3 flex items-center relative overflow-hidden z-10 shrink-0">
                 <div className="w-10 h-10 bg-[#1d3557] rounded-full flex flex-col items-center justify-start pt-0.5 shrink-0 text-white relative shadow-inner overflow-hidden border-[1.5px] border-[#f6ab00] z-10">
                     {data.logoUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={data.logoUrl} alt="Logo" className="w-full h-full object-cover" />
                     ) : (
                         <>
@@ -544,6 +553,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
 
                     <div className="mt-2 text-center border-t-[1px] border-slate-800 w-[90%] pt-[1px] relative">
                         {data.signatureUrl ? (
+                            // eslint-disable-next-line @next/next/no-img-element
                             <img src={data.signatureUrl} className="absolute bottom-2 left-1/2 -translate-x-1/2 w-14 h-6 object-contain" alt="Signature" />
                         ) : null}
                         <span className="text-[5px] font-bold text-[#111827] uppercase tracking-wide relative z-10">Principal Sign</span>
@@ -567,6 +577,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
             <div className="w-[20%] h-full bg-[#0a84ff] relative flex flex-col items-center shrink-0 overflow-hidden text-white gap-2 border-r-[4px] border-[#60a5fa] z-10 shadow-[2px_0_5px_rgba(0,0,0,0.1)]">
                 <div className="absolute top-2 w-[85%] aspect-[1/1.1] bg-yellow-100 border border-yellow-500 rounded-b-xl flex flex-col items-center justify-start pt-1 text-center shield-shape mt-1 shadow-sm overflow-hidden">
                     {data.logoUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={data.logoUrl} alt="Logo" className="w-full h-full object-cover" />
                     ) : (
                         <>
@@ -601,6 +612,7 @@ export default function IdCard({ data, layout = 'classic', templateConfig }: IdC
 
                 <div className="w-full mt-3 border-b-[1.5px] border-[#0f172a] text-center relative px-4 flex justify-center mb-0.5">
                     {data.signatureUrl ? (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img src={data.signatureUrl} className="w-16 h-6 absolute -top-4 opacity-90 object-contain" alt="Signature" />
                     ) : (
                         <svg className="w-16 h-4 absolute -top-[14px] opacity-80" viewBox="0 0 100 30" style={{ fill: 'none', stroke: '#1e3a8a', strokeWidth: 1.5 }}>
