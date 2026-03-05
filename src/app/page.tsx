@@ -12,6 +12,7 @@ export default function Home() {
   const [showGrid, setShowGrid] = useState(false);
   const [selectedLayout, setSelectedLayout] = useState<LayoutType>('classic');
   const [templateConfig, setTemplateConfig] = useState<TemplateConfig | null>(null);
+  const [globalSignature, setGlobalSignature] = useState<string | null>(null);
 
   const handleDataLoaded = (data: StudentData[]) => {
     setStudents(data);
@@ -21,6 +22,7 @@ export default function Home() {
   const handleReset = () => {
     setStudents([]);
     setShowGrid(false);
+    setGlobalSignature(null);
   };
 
   const handleGenerate = () => {
@@ -67,6 +69,8 @@ export default function Home() {
             onLayoutSelect={setSelectedLayout}
             templateConfig={templateConfig}
             onTemplateConfigSelect={setTemplateConfig}
+            globalSignature={globalSignature}
+            onGlobalSignatureChange={setGlobalSignature}
           />
         ) : (
           <div className="space-y-8 animate-in fade-in slide-in-from-bottom-8 duration-700">
@@ -78,7 +82,7 @@ export default function Home() {
                 ← Back to Data Preview
               </button>
             </div>
-            <IdCardGrid data={students} layout={selectedLayout} templateConfig={templateConfig} />
+            <IdCardGrid data={students} layout={selectedLayout} templateConfig={templateConfig} globalSignature={globalSignature} />
           </div>
         )}
       </div>

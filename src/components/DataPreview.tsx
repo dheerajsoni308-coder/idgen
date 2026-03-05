@@ -12,9 +12,11 @@ interface DataPreviewProps {
     onLayoutSelect: (layout: LayoutType) => void;
     templateConfig: TemplateConfig | null;
     onTemplateConfigSelect: (config: TemplateConfig | null) => void;
+    globalSignature: string | null;
+    onGlobalSignatureChange: (url: string | null) => void;
 }
 
-export default function DataPreview({ data, onReset, onGenerate, selectedLayout, onLayoutSelect, templateConfig, onTemplateConfigSelect }: DataPreviewProps) {
+export default function DataPreview({ data, onReset, onGenerate, selectedLayout, onLayoutSelect, templateConfig, onTemplateConfigSelect, globalSignature, onGlobalSignatureChange }: DataPreviewProps) {
     const [isAnalyzingAI, setIsAnalyzingAI] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -113,6 +115,35 @@ export default function DataPreview({ data, onReset, onGenerate, selectedLayout,
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3 w-full md:w-auto">
+                    <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        id="global-signature-upload"
+                        onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                                const url = URL.createObjectURL(e.target.files[0]);
+                                onGlobalSignatureChange(url);
+                            }
+                        }}
+                    />
+                    <button
+                        onClick={() => document.getElementById('global-signature-upload')?.click()}
+                        className="flex-1 md:flex-none flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors focus:ring-2 focus:ring-slate-200 outline-none font-medium text-sm"
+                    >
+                        {globalSignature ? <CheckCircle className="w-4 h-4 text-emerald-500" /> : <ImagePlus className="w-4 h-4" />}
+                        <span>{globalSignature ? 'Signature Uploaded' : 'Upload Signature'}</span>
+                    </button>
+                    {globalSignature && (
+                        <button
+                            onClick={() => onGlobalSignatureChange(null)}
+                            className="flex items-center justify-center text-red-500 hover:text-red-700 rounded-lg p-2"
+                            title="Remove Signature"
+                        >
+                            <X className="w-4 h-4" />
+                        </button>
+                    )}
+
                     <button
                         onClick={onReset}
                         className="flex-1 md:flex-none flex items-center justify-center space-x-2 px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-slate-700 hover:bg-slate-50 hover:text-slate-900 transition-colors focus:ring-2 focus:ring-slate-200 outline-none font-medium text-sm"

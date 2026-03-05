@@ -11,9 +11,10 @@ interface IdCardGridProps {
     data: StudentData[];
     layout: LayoutType;
     templateConfig?: TemplateConfig | null;
+    globalSignature?: string | null;
 }
 
-export default function IdCardGrid({ data, layout, templateConfig }: IdCardGridProps) {
+export default function IdCardGrid({ data, layout, templateConfig, globalSignature }: IdCardGridProps) {
     const [isExporting, setIsExporting] = useState(false);
 
     const exportAllToPDF = async () => {
@@ -119,7 +120,7 @@ export default function IdCardGrid({ data, layout, templateConfig }: IdCardGridP
 
             <div className={`flex flex-wrap justify-center items-center gap-x-12 gap-y-20 ${isLandscape ? 'max-w-[75rem] mx-auto' : 'max-w-7xl mx-auto'}`}>
                 {data.map((student) => (
-                    <IdCard key={student.id} data={student} layout={layout} templateConfig={templateConfig} />
+                    <IdCard key={student.id} data={student} layout={layout} templateConfig={templateConfig} globalSignature={globalSignature} />
                 ))}
             </div>
         </div>

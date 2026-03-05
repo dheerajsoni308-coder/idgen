@@ -38,7 +38,7 @@ export default function FileUpload({ onDataLoaded }: FileUploadProps) {
                 const nameIdx = headers.findIndex((h) => h.includes("name") && !h.includes("father"));
                 const fatherIdx = headers.findIndex((h) => h.includes("father"));
                 const idIdx = headers.findIndex((h) => h === "id" || h.includes("id number") || h.includes("id no") || h.includes("roll"));
-                const roleIdx = headers.findIndex((h) => h.includes("role") || h.includes("type"));
+                const roleIdx = headers.findIndex((h) => h.includes("class") || h.includes("type"));
                 const deptIdx = headers.findIndex((h) => h.includes("department") || h.includes("course"));
                 const bgIdx = headers.findIndex((h) => h.includes("blood") || h === "bg");
                 const dobIdx = headers.findIndex((h) => h.includes("dob") || h.includes("date of birth"));
