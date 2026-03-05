@@ -5,7 +5,8 @@ import { StudentData, LayoutType, TemplateConfig } from "@/types";
 import FileUpload from "@/components/FileUpload";
 import DataPreview from "@/components/DataPreview";
 import IdCardGrid from "@/components/IdCardGrid";
-import { Sparkles } from "lucide-react";
+import ManualEntryModal from "@/components/ManualEntryModal";
+import { Sparkles, PlusCircle } from "lucide-react";
 
 export default function Home() {
   const [students, setStudents] = useState<StudentData[]>([]);
@@ -13,6 +14,7 @@ export default function Home() {
   const [selectedLayout, setSelectedLayout] = useState<LayoutType>('classic');
   const [templateConfig, setTemplateConfig] = useState<TemplateConfig | null>(null);
   const [globalSignature, setGlobalSignature] = useState<string | null>(null);
+  const [isManualModalOpen, setIsManualModalOpen] = useState(false);
 
   const handleDataLoaded = (data: StudentData[]) => {
     setStudents(data);
@@ -53,11 +55,27 @@ export default function Home() {
         </header>
 
         {students.length === 0 ? (
-          <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out">
-            <FileUpload onDataLoaded={handleDataLoaded} />
+          <div className="animate-in fade-in slide-in-from-bottom-8 duration-700 ease-out flex flex-col items-center">
+            <div className="w-full max-w-2xl bg-white p-8 rounded-3xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] ring-1 ring-slate-200/50">
+              <FileUpload onDataLoaded={handleDataLoaded} />
 
-            <div className="mt-16 text-center text-sm text-slate-400">
-              <p>Supported columns: Name, ID, Role, Department, Blood Group, DOB, Photo (URL)</p>
+              <div className="relative flex items-center py-6">
+                <div className="flex-grow border-t border-slate-200"></div>
+                <span className="flex-shrink-0 mx-4 text-slate-400 text-sm font-medium">OR</span>
+                <div className="flex-grow border-t border-slate-200"></div>
+              </div>
+
+              <button
+                onClick={() => setIsManualModalOpen(true)}
+                className="w-full flex items-center justify-center gap-2 py-4 px-6 border-2 border-slate-200 border-dashed rounded-2xl text-slate-600 font-semibold hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 transition-all duration-200 group"
+              >
+                <PlusCircle className="w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-colors" />
+                Create ID Card Manually
+              </button>
+            </div>
+
+            <div className="mt-8 text-center text-sm text-slate-400 max-w-xl">
+              <p>Supported columns: Name, ID, Role, Department, Blood Group, DOB, Phone, Address, Photo (URL), Signature (URL)</p>
             </div>
           </div>
         ) : !showGrid ? (
@@ -85,6 +103,12 @@ export default function Home() {
             <IdCardGrid data={students} layout={selectedLayout} templateConfig={templateConfig} globalSignature={globalSignature} />
           </div>
         )}
+
+        <ManualEntryModal
+          isOpen={isManualModalOpen}
+          onClose={() => setIsManualModalOpen(false)}
+          onSubmit={handleDataLoaded}
+        />
       </div>
     </main>
   );
